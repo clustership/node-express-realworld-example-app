@@ -31,7 +31,10 @@ if (!isProduction) {
 }
 
 if(isProduction){
-  mongoose.connect(process.env.MONGODB_URI);
+  var mongodb_uri = 'mongodb://' + process.env.MONGODB_USER + ':' + process.env.MONGODB_PASSWORD + '@' + process.env.DATABASE_SERVICE_NAME + ':27017/' + process.env.MONGODB_DATABASE;
+  console.log(mongodb_uri);
+  // mongoose.connect(process.env.MONGODB_URI);
+  mongoose.connect(mongodb_uri);
 } else {
   mongoose.connect('mongodb://localhost/conduit');
   mongoose.set('debug', true);
